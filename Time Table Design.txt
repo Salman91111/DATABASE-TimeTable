@@ -1,0 +1,41 @@
+CREATE TABLE courses (
+  id INT PRIMARY KEY,
+  name VARCHAR(50)
+);
+
+CREATE TABLE teachers (
+  id INT PRIMARY KEY,
+  name VARCHAR(50)
+);
+
+CREATE TABLE sessions (
+  id INT PRIMARY KEY,
+  course_id INT,
+  teacher_id INT,
+  start_time DATETIME,
+  end_time DATETIME,
+  room VARCHAR(50),
+  CONSTRAINT fk_courses
+    FOREIGN KEY (course_id)
+    REFERENCES courses(id),
+  CONSTRAINT fk_teachers
+    FOREIGN KEY (teacher_id)
+    REFERENCES teachers(id)
+);
+
+INSERT INTO courses (id, name) VALUES (1, 'Mathematics');
+INSERT INTO courses (id, name) VALUES (2, 'English');
+INSERT INTO courses (id, name) VALUES (3, 'Science');
+
+INSERT INTO teachers (id, name) VALUES (1, Sir Nouman');
+INSERT INTO teachers (id, name) VALUES (2, 'Sir Anzal');
+INSERT INTO teachers (id, name) VALUES (3, 'Sir Akhtar');
+
+INSERT INTO sessions (id, course_id, teacher_id, start_time, end_time, room) 
+VALUES (1, 1, 1, '2023-05-08 08:00:00', '2023-05-08 10:00:00', 'Room A');
+
+INSERT INTO sessions (id, course_id, teacher_id, start_time, end_time, room) 
+VALUES (2, 2, 2, '2023-05-08 10:00:00', '2023-05-08 12:00:00', 'Room B');
+
+INSERT INTO sessions (id, course_id, teacher_id, start_time, end_time, room) 
+VALUES (3, 3, 3, '2023-05-08 13:00:00', '2023-05-08 15:00:00', 'Room C');
